@@ -4,4 +4,74 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>Hello World</h1>
+
+
+<div id="container">
+    <div id="results">
+        <h1>Movies</h1>
+        @foreach (Movie movie in Model.Movies)
+        {
+            <div class="movie-entry">
+                <h2>
+                    @movie.Title
+                    <smaller>
+                        @(@movie.MPAA_Rating == null ? "" : $"({@movie.MPAA_Rating})")
+                    </smaller>
+                </h2>
+                <i>@movie.Major_Genre</i>
+                <div class="ratings">
+                    <div>
+                        Rotten Tomatoes:
+                        <h3>
+                            @movie.Rotten_Tomatoes_Rating
+                        </h3>
+
+                    </div>
+                    <div>
+                        IMDB:
+                        <h3>
+                            @movie.IMDB_Rating
+                        </h3>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+    
+    <div>
+        <form method="post">
+            <input type="text" name="search" id="search" />
+            <input type="submit" value="Search and Filter" />
+
+            <h2>MPAA Rating</h2>
+            <div class="checkbox-list">
+                <label>
+                    <input type="checkbox" name="rating" value="G" />
+                    Rated G
+                </label>
+                <label>
+                    <input type="checkbox" name="rating" value="PG" />
+                    Rated PG
+                </label>
+                <label>
+                    <input type="checkbox" name="rating" value="PG-13" />
+                    Rated PG-13
+                </label>
+                <label>
+                    <input type="checkbox" name="rating" value="R" />
+                    Rated R
+                </label>
+                <label>
+                    <input type="checkbox" name="rating" value="NC-17" />
+                    Rated NC-17
+                </label>
+            </div>
+            
+
+        </form>
+    </div>
+    
+</div>
+
